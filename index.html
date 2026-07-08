@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"/>
+    <title>GameGrid</title>
+</head>
+<body>
+    <header id="header">
+        <h1>GameGrid</h1>
+        <nav id="navbar">
+            <ul>
+                <li><a class="nav-link" href="">Games</a></li>
+                <li><a class="nav-link" href="">Teams</a></li>
+                <li><a class="nav-link" href="">Rankings</a></li>
+                <li><a class="nav-link" href="">About</a></li>
+            </ul>
+            
+            <div id="nav-buttons">
+                <button class="login" href="">Log In</button>
+                <button class="sign-up" href="">Sign Up</button>
+            </div>
+            
+        </nav>
+    </header>
+    
+    <section id="information">
+        <h5 id="welcome-message">NCAA SPORTS TRACKER</h5>
+        <h3 id="top-message">Follow every match.</h3>
+        <h3 id="bottom-message"><span id="colored">Support</span> every team.</h3>
+        <p id="info-message">GameGrid brings you live scores, schedules, and stats for all NCAA Volleyball teams - with more college sports coming soon!</p>
+
+        <button id="live-scores">View Live Scores</button>
+        <button id="browse-teams">Browse Teams</button>
+    </section>
+
+    <div class="live-games">
+        <div id="live-bubble"></div>
+        <h4 id="live-games-now">LIVE NOW</h4>
+        <h4 id="live-games-view"><a id="view-all-games" href="">View All Games ></a></h4>
+        <div id="game-card-container" class="game-card-container"></div>
+    </div>
+
+    <section id="all-info">
+        <h3 id="header-all-info">Everything you need to stay in <span id="colored">the game</span>!</h3>
+        <div id="can-do-cards">
+            <div class="cards">
+                <div class="row-cards">
+                    <h4 id="cards-header">Live Scores</h4>
+                    <p id="cards-info">Real-time updates for every NCAA volleyball match.</p>
+                </div>
+                <div class="row-cards">
+                    <h4 id="cards-header">Favorite Teams</h4>
+                    <p id="cards-info">Follow your favorite teams and get quick access to their games and results.</p>
+                </div>
+                <div class="row-cards">
+                    <h4 id="cards-header">Schedules & Results</h4>
+                    <p id="cards-info">View upcoming matches, past results, and set-by-set breakdowns.</p>
+                </div>
+                <div class="row-cards">
+                    <h4 id="cards-header">Built for More</h4>
+                    <p id="cards-info">We're starting with volleyball but expect more NCAA sports to come soon!</p>
+                </div>
+            </div>
+            <div id="ready-for-more-card">
+                <h4 id="ready-header">Ready to follow your favorite teams?</h4>
+                <p id="ready-info">Create an account to personalize your experience.</p>
+                <button id="ready-button">Get Started ></button>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>

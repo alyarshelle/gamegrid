@@ -1,0 +1,302 @@
+:root {
+    --background-color: #070E19;
+    --surface-color: #141A25;
+    --accent-color: #245AE0;
+    --secondary-color: #3200bc;
+    --text-color: #FFFFFF;
+    --muted-text-color: #50505D;
+    --section-background: hsl(245, 25%, 7%);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+header {
+    background-color: var(--surface-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 10;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+#navbar {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 18px;
+}
+
+#navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 40px;
+    position: absolute;
+    left: 680px;
+    font-size: 22px;
+}
+
+#nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+nav a:hover {
+    color: var(--accent-color);
+}
+
+button {
+    border: none;
+    border-radius: 5px;
+    background-color: var(--surface-color);
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+#nav-buttons button {
+    min-width: 100px;
+}
+
+.sign-up {
+    background-color: var(--accent-color);
+}
+
+nav button:hover {
+    color: var(--accent-color);
+}
+
+.sign-up:hover {
+    color: var(--secondary-color);
+}
+
+section {
+    width: 100%;
+    background-color: var(--section-background);
+}
+
+#information {
+    position: absolute;
+    top: 70px;
+    padding-left: 50px;
+    height: 570px;
+}
+
+#welcome-message,
+#top-message,
+#bottom-message,
+#info-message,
+#live-scores,
+#browse-teams {
+    position: absolute;
+}
+
+#welcome-message {
+    top: 100px;
+    font-size: 16px;
+    margin: 30px 10px;
+    color: var(--accent-color);
+}
+
+#top-message {
+    top: 130px;
+    font-size: 48px;
+    margin: 35px 8px;
+}
+
+#colored {
+    color: var(--accent-color);
+}
+
+#bottom-message {
+    top: 180px;
+    font-size: 48px;
+    margin: 45px 8px;
+}
+
+#info-message {
+    top: 230px;
+    width: 560px;
+    font-size: 22px;
+    margin: 70px 8px;
+}
+
+#live-scores {
+    width: 250px;
+    height: 60px;
+    top: 410px;
+    left: 60px;
+    background-color: var(--accent-color);
+    border: 1px solid white;
+}
+
+#browse-teams {
+    width: 250px;
+    height: 60px;
+    top: 410px;
+    left: 340px;
+    border: 1px solid white;
+}
+
+.live-games {
+    background: linear-gradient(to bottom, var(--background-color) 0%, var(--background-color) 15%, var(--surface-color) 15%, var(--surface-color) 100%);
+    width: 700px;
+    height: 500px;
+    position: absolute;
+    top: 100px;
+    left: 900px;
+    border-radius: 30px;
+}
+
+#live-bubble {
+    background-color: red;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position: absolute;
+    top: 38px;
+    left: 15px;
+}
+
+#live-games-now {
+    font-size: 18px;
+    margin: 35px 40px;
+}
+
+#live-games-view {
+    font-size: 18px;
+    position: relative;
+    top: -58px;
+    left: 520px
+}
+
+#view-all-games {
+    text-decoration: none;
+    color: var(--accent-color);
+}
+
+#view-all-games:hover {
+    color: var(--secondary-color);
+}
+
+#all-info {
+    background-color: var(--background-color);
+}
+
+#header-all-info {
+    font-size: 28px;
+    position: absolute;
+    top: 670px;
+    left: 580px;
+}
+
+.cards {
+    position: absolute;
+    top: 770px;
+    left: 50px;
+    /* background-color: green; */
+    width: 1550px;
+    height: 200px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.row-cards {
+    background-color: var(--surface-color);
+    width: 330px;
+    height: 130px;
+    border-radius: 10px;  
+    margin: 30px;
+}
+
+#cards-header {
+    font-size: 18px;
+    width: 180px;
+    position: relative;
+    left: 100px
+}
+
+#cards-info {
+    font-size: 14px;
+    width: 190px;
+    position: relative;
+    top: -10px;
+    left: 100px;
+}
+
+#ready-for-more-card {
+    background-color: var(--surface-color);
+    border-radius: 10px; 
+    width: 1490px;
+    height: 110px;
+    position: absolute;
+    top: 960px;
+    left: 80px;
+}
+
+#ready-header { 
+    font-size: 22px;
+    position: relative;
+    left: 410px
+}
+
+#ready-info {
+    font-size: 18px;
+    position: relative;
+    top: -20px;
+    left: 410px
+}
+
+#ready-button {
+    background-color: var(--accent-color);
+    width: 150px;
+    position: relative;
+    top: -90px;
+    left: 890px;
+}
+
+#ready-button:hover{
+    color: var(--secondary-color)
+}
+/*
+   New palette:
+   #F0FDF4  Cool Mint White
+   #FFFFFF  Pure White
+   #FF007F  Laser Pink
+   #00D2C4  Bright Turquoise
+   #0F1A1C  Dark Teal-Black
+*/
