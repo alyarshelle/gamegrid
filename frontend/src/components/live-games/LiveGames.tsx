@@ -119,73 +119,89 @@ export default function LiveGames() {
     const [gaming, setGaming] = useState<GamesData | null>(null);
     const [gameInfos, setGameInfos] = useState<Record<string, GameInfo>>({});
 
-    const today = new Date();
+    // const today = new Date();
 
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, "0");
-    const day = String(today.getDate()).padStart(2, "0");
+    // const year = today.getFullYear();
+    // const month = String(today.getMonth() + 1).padStart(2, "0");
+    // const day = String(today.getDate()).padStart(2, "0");
 
-    // const date = `${year}/${month}/${day}`;
-    // const date = "2026/09/01"
+    const year = 2026
+    const month = "08"
+    const day = "21"
+
+
+    const date = `${year}/${month}/${day}`;
+    // const date = "2026/08/21"
     const dateNormal = `${month}/${day}/${year}`;
 
     useEffect(() => {
-        const socket = new WebSocket(
-            'ws://localhost:3001/ws'
-        );
-
-        socket.onopen = () => {
-            console.log(
-                'Connected to GameGrid WebSocket'
-            );
-        };
-
-        socket.onmessage = (event) => {
+        const getGames = async () => {
             try {
-                const message = JSON.parse(event.data);
-
-                console.log(
-                    'WebSocket message:',
-                    message
+                const response = await fetch(
+                    `/api/scoreboard/volleyball-women/d1/${date}/all-conf`
                 );
 
-                if (
-                    message.type === 'initial_data' ||
-                    message.type === 'scoreboard_update'
-                ) {
-                    const data = message.data;
-
-                    setGaming(data.scoreboard);
-                    setGameInfos(data.gameInfos);
+                if (!response.ok) {
+                    throw new Error(`Scoreboard failed: ${response.status}`);
                 }
 
+                const gamingInfo: GamesData = await response.json();
+
+                console.log("SCOREBOARD:");
+                console.log(gamingInfo);
+
+                setGaming(gamingInfo);
+
+                const infos: Record<string, GameInfo> = {};
+
+                for (const game of gamingInfo.games) {
+                    const gameId = game.game.gameID;
+
+                    try {
+                        const gameResponse = await fetch(`/api/game/${gameId}`);
+
+                        if (!gameResponse.ok) {
+                            const errorText = await gameResponse.text();
+
+                            console.error(
+                                `Failed to fetch game ${gameId}:`,
+                                gameResponse.status,
+                                errorText
+                            );
+
+                            continue;
+                        }
+
+                        const gameDetails: GameInfo = await gameResponse.json();
+
+                        infos[gameId] = gameDetails;
+                    } catch (error) {
+                        console.error(`Error fetching game ${gameId}:`, error);
+                    }
+                }
+
+                setGameInfos(infos);
+
+                console.log("GAME INFOS:");
+                console.log(infos);
+
             } catch (error) {
-                console.error(
-                    'Failed to process WebSocket message:',
-                    error
-                );
+                console.error("Network or parsing error:", error);
             }
         };
 
-        socket.onerror = (error) => {
-            console.error(
-                'WebSocket error:',
-                error
-            );
-        };
+        getGames();
 
-        socket.onclose = (event) => {
-            console.log(
-                'WebSocket closed:',
-                event.code,
-                event.reason
-            );
-        };
+        // Fetch again every 30 seconds
+        const interval = setInterval(() => {
+            getGames();
+        }, 5_000);
 
+        // Stop polling when leaving the page / date changes
         return () => {
-            socket.close();
+            clearInterval(interval);
         };
-    }, []);
+    }, [date]);
 
     function hexToRgba(hex: string, alpha = 0.85) {
         hex = hex.replace(/^#/, "");
@@ -218,6 +234,13 @@ export default function LiveGames() {
                 const targetDate = new Date(`${month}/${day}/${year} ${gameStartTime}`);
                 const currentDate = new Date();
 
+
+                // const rankingHome = teams?.find((team) => team.isHome)?.teamRank ?? 0;
+                // const rankingAway = teams?.find((team) => !team.isHome)?.teamRank ?? 0;
+                // console.log("TEAM IS RANKED??? ")
+                // console.log(rankingHome, teams?.find((team) => team.isHome))
+                // console.log(rankingAway, teams?.find((team) => !team.isHome))
+
                 return (
                     <div className="game-card" key={gameId}>
                         <div className="game-card-header" style={{ background: `linear-gradient( 115deg, ${hexToRgba(homeColors, 0.75)} 40%, ${hexToRgba(awayColors, 0.75)} 60% )`,}} />
@@ -234,7 +257,7 @@ export default function LiveGames() {
                                 )}
                             </div>
                             <div className="awayTeamContainer">
-                                <span className="awayName"> {awayTeam.names.short.length > 12 ? awayTeam.names.char6 : awayTeam.names.short} </span>
+                                <span className="awayName"> <span className="rank-away">{}</span>{awayTeam.names.short.length > 12 ? awayTeam.names.char6 : awayTeam.names.short} </span>
                                 <span className="awayScore"> {awayTeam.score} </span>
                             </div>
                         </div>
