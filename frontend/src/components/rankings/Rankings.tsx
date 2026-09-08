@@ -34,16 +34,18 @@ export default function Rankings(){
 
         const getRankings = async () => {
             try {
-            const response = await fetch(
-                `${API_BASE}/rankings/volleyball-women/d1/avca-rankings`
-            );
+            const targetUrl = `${API_BASE}/rankings/volleyball-women/d1/avca-rankings`;
 
+            // Dynamically routes to local proxy or compiles the full URL for AllOrigins
+            const finalUrl = import.meta.env.DEV
+                ? targetUrl
+                : `https://allorigins.win{encodeURIComponent(targetUrl)}`;
+
+            const response = await fetch(finalUrl);
             const rankingInfo = await response.json();
 
             console.log("Raw Response:", rankingInfo);
 
-            // 1. Locally, rankingInfo is your normal sports data.
-            // 2. On GitHub Pages, AllOrigins wraps it inside rankingInfo.contents as a string.
             const realData = import.meta.env.DEV 
                 ? rankingInfo 
                 : JSON.parse(rankingInfo.contents);
