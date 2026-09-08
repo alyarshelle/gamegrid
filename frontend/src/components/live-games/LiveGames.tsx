@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import ScoreTable from "./ScoreTable"
 
+const API_BASE = import.meta.env.DEV 
+  ? '/api' 
+  : 'https://henrygd.me';
+
+
 interface Conference {
     conferenceName: string;
     conferenceSeo: string;
@@ -138,8 +143,8 @@ export default function LiveGames() {
         const getGames = async () => {
             try {
                 const response = await fetch(
-                    `/api/scoreboard/volleyball-women/d1/${date}/all-conf`
-                );
+                    `${API_BASE}/scoreboard/volleyball-women/d1/${date}/all-conf`
+                );              
 
                 if (!response.ok) {
                     throw new Error(`Scoreboard failed: ${response.status}`);
@@ -158,7 +163,7 @@ export default function LiveGames() {
                     const gameId = game.game.gameID;
 
                     try {
-                        const gameResponse = await fetch(`/api/game/${gameId}`);
+                        const gameResponse = await fetch(`${API_BASE}/game/${gameId}`);
 
                         if (!gameResponse.ok) {
                             const errorText = await gameResponse.text();

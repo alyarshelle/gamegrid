@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 
+const API_BASE = import.meta.env.DEV 
+  ? '/api' 
+  : 'https://henrygd.me';
+
 interface RankingItem {
   RANK: string;
   SCHOOL: string;
@@ -30,7 +34,7 @@ export default function Rankings(){
         const getRankings = async () => {
         try {
             const response = await fetch(
-            "/api/rankings/volleyball-women/d1/avca-rankings"
+                `${API_BASE}/rankings/volleyball-women/d1/avca-rankings`
             );
 
             const rankingInfo = await response.json();
