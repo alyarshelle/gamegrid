@@ -39,7 +39,7 @@ export default function Rankings(){
             // Dynamically routes to local proxy or compiles the full URL for AllOrigins
             const finalUrl = import.meta.env.DEV
                 ? targetUrl
-                : `https://allorigins.win{encodeURIComponent(targetUrl)}`;
+                : `https://allorigins.win{encodeURIComponent(${targetUrl})}`;
 
             const response = await fetch(finalUrl);
             const rankingInfo = await response.json();
