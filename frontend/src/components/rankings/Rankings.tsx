@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from "react";
 
 const API_BASE = import.meta.env.DEV 
   ? '/api' 
-  : 'https://ncaa-api.henrygd.me';
+  : 'https://ncaa-sports-api.onrender.com'
+
 
 interface RankingItem {
   RANK: string;

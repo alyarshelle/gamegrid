@@ -3,7 +3,8 @@ import ScoreTable from "./ScoreTable"
 
 const API_BASE = import.meta.env.DEV 
   ? '/api' 
-  : 'https://ncaa-api.henrygd.me';
+  : 'https://ncaa-sports-api.onrender.com'
+
 
 
 interface Conference {
