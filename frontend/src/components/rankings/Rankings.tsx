@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 const API_BASE = import.meta.env.DEV 
   ? '/api' 
-  : 'https://ncaa-sports-api.onrender.com'
+  : 'https://corsproxy.io?' + encodeURIComponent('https://ncaa-api.henrygd.me');
 
 
 interface RankingItem {
