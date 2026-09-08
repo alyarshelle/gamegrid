@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 const API_BASE = import.meta.env.DEV 
   ? '/api' 
-  : 'https://corsproxy.io?' + encodeURIComponent('https://ncaa-api.henrygd.me');
+  : 'https://allorigins.win' + encodeURIComponent('https://ncaa-api.henrygd.me');
 
 
 interface RankingItem {
@@ -27,29 +27,38 @@ export default function Rankings(){
 
     useEffect(() => {
         if (hasFetched.current) {
-        return;
+            return;
         }
 
         hasFetched.current = true;
 
         const getRankings = async () => {
-        try {
+            try {
             const response = await fetch(
                 `${API_BASE}/rankings/volleyball-women/d1/avca-rankings`
             );
 
             const rankingInfo = await response.json();
 
-            console.log(rankingInfo);
+            console.log("Raw Response:", rankingInfo);
 
-            setRankings(rankingInfo);
-        } catch (error) {
+            // 1. Locally, rankingInfo is your normal sports data.
+            // 2. On GitHub Pages, AllOrigins wraps it inside rankingInfo.contents as a string.
+            const realData = import.meta.env.DEV 
+                ? rankingInfo 
+                : JSON.parse(rankingInfo.contents);
+
+            console.log("Parsed Data:", realData);
+
+            setRankings(realData);
+            } catch (error) {
             console.error("Network or parsing error:", error);
-        }
+            }
         };
 
         getRankings();
-    }, []);
+        }, []);
+
 
     return (
         <>
