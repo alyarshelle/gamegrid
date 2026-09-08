@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import ScoreTable from "./ScoreTable"
 
-const API_BASE = import.meta.env.DEV 
-  ? '/api' 
-  : 'https://corsproxy.io?' + encodeURIComponent('https://ncaa-api.henrygd.me');
+const API_BASE = import.meta.env.DEV
+  ? '/api'
+  : 'https://ncaa-sports-api.onrender.com';
 
 
 
