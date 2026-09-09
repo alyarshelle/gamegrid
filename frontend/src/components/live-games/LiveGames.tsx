@@ -143,9 +143,11 @@ export default function LiveGames() {
     useEffect(() => {
         const getGames = async () => {
             try {
-                const response = await fetch(
-                    `${API_BASE}/scoreboard/volleyball-women/d1/${date}/all-conf`
-                );              
+                const scoreboardUrl = import.meta.env.DEV
+                    ? `${API_BASE}/scoreboard/volleyball-women/d1/${date}/all-conf`
+                    : `${API_BASE}/api/scoreboard/volleyball-women/d1/${date}/all-conf`;
+
+                const response = await fetch(scoreboardUrl);            
 
                 if (!response.ok) {
                     throw new Error(`Scoreboard failed: ${response.status}`);
@@ -164,7 +166,11 @@ export default function LiveGames() {
                     const gameId = game.game.gameID;
 
                     try {
-                        const gameResponse = await fetch(`${API_BASE}/game/${gameId}`);
+                        const gameUrl = import.meta.env.DEV
+                        ? `${API_BASE}/game/${gameId}`
+                        : `${API_BASE}/api/game/${gameId}`;
+
+                        const gameResponse = await fetch(gameUrl);
 
                         if (!gameResponse.ok) {
                             const errorText = await gameResponse.text();
