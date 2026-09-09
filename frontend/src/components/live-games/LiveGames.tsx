@@ -3,7 +3,7 @@ import ScoreTable from "./ScoreTable"
 
 const API_BASE = import.meta.env.DEV
   ? '/api'
-  : 'https://ncaa-sports-api.onrender.com';
+  : 'https://gamegrid-iyzn.onrender.com';
 
 
 

@@ -75,6 +75,32 @@ app.get(
   }
 );
 
+app.get("/api/game/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const response = await fetch(
+      `https://ncaa-api.henrygd.me/game/${id}`
+    );
+
+    if (!response.ok) {
+      return res.status(response.status).json({
+        error: `NCAA API returned ${response.status}`,
+      });
+    }
+
+    const data = await response.json();
+
+    res.json(data);
+  } catch (error) {
+    console.error("NCAA game API error:", error);
+
+    res.status(500).json({
+      error: "Failed to fetch NCAA game data",
+    });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
