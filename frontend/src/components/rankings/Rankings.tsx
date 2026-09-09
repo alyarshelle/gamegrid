@@ -42,9 +42,7 @@ export default function Rankings(){
 
             console.log("Raw Response:", rankingInfo);
 
-            const realData = import.meta.env.DEV 
-                ? rankingInfo 
-                : JSON.parse(rankingInfo.contents);
+            const realData = rankingInfo;
 
             console.log("Parsed Data:", realData);
 
