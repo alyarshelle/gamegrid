@@ -48,6 +48,33 @@ app.get(
   }
 );
 
+app.get(
+  "/api/rankings/volleyball-women/d1/avca-rankings",
+  async (_req, res) => {
+    try {
+      const response = await fetch(
+        "https://ncaa-api.henrygd.me/rankings/volleyball-women/d1/avca-rankings"
+      );
+
+      if (!response.ok) {
+        return res.status(response.status).json({
+          error: `NCAA API returned ${response.status}`,
+        });
+      }
+
+      const data = await response.json();
+
+      res.json(data);
+    } catch (error) {
+      console.error("NCAA rankings API error:", error);
+
+      res.status(500).json({
+        error: "Failed to fetch NCAA rankings",
+      });
+    }
+  }
+);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

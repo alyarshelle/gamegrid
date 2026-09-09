@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
-const API_BASE = import.meta.env.DEV 
-  ? '/api' 
-  : 'https://allorigins.win' + encodeURIComponent('https://ncaa-api.henrygd.me');
-
+const API_BASE = import.meta.env.DEV
+  ? '/api'
+  : 'https://gamegrid-iyzn.onrender.com';
 
 interface RankingItem {
   RANK: string;
@@ -34,12 +33,7 @@ export default function Rankings(){
 
         const getRankings = async () => {
             try {
-            const targetUrl = `${API_BASE}/rankings/volleyball-women/d1/avca-rankings`;
-
-            // Dynamically routes to local proxy or compiles the full URL for AllOrigins
-            const finalUrl = import.meta.env.DEV
-                ? targetUrl
-                : `https://allorigins.win{encodeURIComponent(${targetUrl})}`;
+            const finalUrl = `${API_BASE}/api/rankings/volleyball-women/d1/avca-rankings`;
 
             const response = await fetch(finalUrl);
             const rankingInfo = await response.json();
