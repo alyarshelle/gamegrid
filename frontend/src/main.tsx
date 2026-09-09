@@ -5,7 +5,7 @@ import MainPage from './pages/MainPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <HashRouter basename="/gamegrid">
+    <HashRouter>
       <MainPage />
     </HashRouter>
   </StrictMode>,
