@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      sessionStorage.redirect = location.href;
+      location.replace(
+        location.origin + "/gamegrid/" +
+        location.pathname.slice(1) +
+        location.search +
+        location.hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
