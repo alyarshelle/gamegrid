@@ -33,7 +33,7 @@ export default function Rankings(){
 
         const getRankings = async () => {
             try {
-            const finalUrl = `${API_BASE}/api/rankings/volleyball-women/d1/avca-rankings`;
+            const finalUrl = `${API_BASE}/rankings/volleyball-women/d1/avca-rankings`;
 
             const response = await fetch(finalUrl);
             const rankingInfo = await response.json();
