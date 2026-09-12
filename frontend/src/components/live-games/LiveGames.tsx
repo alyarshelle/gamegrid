@@ -133,7 +133,9 @@ export default function LiveGames() {
 
     const year = 2026
     const month = "08"
-    const day = "21"
+    const day = "28"
+
+    //what happend to this day above????
 
 
     const date = `${year}/${month}/${day}`;
@@ -238,13 +240,23 @@ export default function LiveGames() {
                 const homeTeam = game.game.home;
                 const gameInfo = gameInfos[gameId];
                 const teams = gameInfo?.contests[0]?.teams;
-                const homeColors = teams?.find((team) => team.isHome)?.color ?? "#000";
-                const awayColors = teams?.find((team) => !team.isHome)?.color ?? "#000";
+                const homeColors = teams?.find((team) => team.isHome)?.color;
+                const awayColors = teams?.find((team) => !team.isHome)?.color;
                 const gamePeriod = gameInfo?.contests[0]?.currentPeriod;
                 const gameStartTime = gameInfo?.contests[0]?.startTime;
 
                 const targetDate = new Date(`${month}/${day}/${year} ${gameStartTime}`);
                 const currentDate = new Date();
+
+                console.log("GAME INFO", gameInfo)
+
+                // console.log("COLOR DEBUG", {
+                //     gameId,
+                //     gameInfo,
+                //     teams,
+                //     homeColors,
+                //     awayColors,
+                // });
 
 
                 // const rankingHome = teams?.find((team) => team.isHome)?.teamRank ?? 0;
@@ -255,8 +267,17 @@ export default function LiveGames() {
 
                 return (
                     <div className="game-card" key={gameId}>
-                        <div className="game-card-header" style={{ background: `linear-gradient( 115deg, ${hexToRgba(homeColors, 0.75)} 40%, ${hexToRgba(awayColors, 0.75)} 60% )`,}} />
-                        <div className="teamName">
+                    <div
+                        className="game-card-header"
+                        style={{
+                            background: `linear-gradient(
+                                115deg,
+                                ${hexToRgba(homeColors ?? "#000", 0.75)} 40%,
+                                ${hexToRgba(awayColors ?? "#000", 0.75)} 60%
+                            )`,
+                        }}
+                    />                        
+                    <div className="teamName">
                             <div className="homeTeamContainer">
                                 <span className="homeScore"> {homeTeam.score} </span>
                                 <span className="homeName"> {homeTeam.names.short.length > 12 ? homeTeam.names.char6 : homeTeam.names.short}</span>

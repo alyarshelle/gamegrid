@@ -336,12 +336,13 @@ section {
 .container {
     display: flex;
     flex-wrap: wrap;
-    justify-content:center;
-    gap:50px;
-    margin: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
     position: absolute;
-    top: 190px;
-    left: 100px;
+    top: 220px;
+    left: 180px;
+    right: 100px;
 }
 
 .game-card-header {
