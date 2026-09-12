@@ -125,21 +125,13 @@ export default function LiveGames() {
     const [gaming, setGaming] = useState<GamesData | null>(null);
     const [gameInfos, setGameInfos] = useState<Record<string, GameInfo>>({});
 
-    // const today = new Date();
+    const today = new Date();
 
-    // const year = today.getFullYear();
-    // const month = String(today.getMonth() + 1).padStart(2, "0");
-    // const day = String(today.getDate()).padStart(2, "0");
-
-    const year = 2026
-    const month = "08"
-    const day = "28"
-
-    //what happend to this day above????
-
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
 
     const date = `${year}/${month}/${day}`;
-    // const date = "2026/08/21"
     const dateNormal = `${month}/${day}/${year}`;
 
     useEffect(() => {
